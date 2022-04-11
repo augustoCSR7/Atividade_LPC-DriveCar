@@ -9,18 +9,7 @@ from car import Car
 from player import Player
 
 screen = pygame.display.set_mode((Config.width, Config.height))
-
-
 pygame.display.set_caption("Drive car")
-
-bg = Background()
-player = Player()
-car1 = Car(posx=205)
-car2 = Car(posx=280)
-car3 = Car(posx=360)
-car4 = Car(posx=435)
-flag = Flag()
-
 
 class Game:
     def __init__(self):
@@ -35,6 +24,13 @@ class Game:
         self.sound_crash.set_volume(0.3)
         self.sound_point = pygame.mixer.Sound('sounds/mp3 and wav/points.wav')
         self.sound_point.set_volume(0.3)
+        self.bg = Background()
+        self.player = Player()
+        self.car1 = Car(posx=205)
+        self.car2 = Car(posx=280)
+        self.car3 = Car(posx=360)
+        self.car4 = Car(posx=435)
+        self.flag = Flag()
 
     def menu(self):
         for event in pygame.event.get():
@@ -61,22 +57,22 @@ class Game:
         pygame.display.update()
     
     def draw_score(self):
-        txt_speed = self.FONT.render('Speed:' + str(int(player.speed)) + ' mph', True, (255, 255, 255))
+        txt_speed = self.FONT.render('Speed:' + str(int(self.player.speed)) + ' mph', True, (255, 255, 255))
         txt_score = self.FONT.render('Score:' + str(self.score), True, (255, 255, 255))
         screen.blit(txt_speed, (10, 610))
         screen.blit(txt_score, (10, 640))
 
     def collision(self):
-        p = pygame.Rect(player.trace)
-        f = pygame.Rect(flag.trace)
-        cars = [pygame.Rect(car1.trace), pygame.Rect(car2.trace), pygame.Rect(car3.trace), pygame.Rect(car4.trace)]
+        p = pygame.Rect(self.player.trace)
+        f = pygame.Rect(self.flag.trace)
+        cars = [pygame.Rect(self.car1.trace), pygame.Rect(self.car2.trace), pygame.Rect(self.car3.trace), pygame.Rect(self.car4.trace)]
         if p.colliderect(f):
-            flag.posx = -100
-            game.score += 1
+            self.flag.posx = -100
+            self.score += 1
             self.sound_point.play(loops=0, maxtime=0, fade_ms=0)
         for car in cars:
             if p.colliderect(car):
-                screen.blit(self.image, (int(player.posx - 80), int(player.posy + 10)))
+                screen.blit(self.image, (int(self.player.posx - 80), int(self.player.posy + 10)))
                 pygame.mixer.music.stop()
                 #player.sound_revup.stop()
                 self.sound_crash.play(loops=0, maxtime=0, fade_ms=1)
@@ -89,28 +85,26 @@ class Game:
 
 
     def mainloop(self):
-
-        bg.draw(screen)
-        flag.move(game)
-        flag.draw(screen)
-        player.move(game, bg, flag)
-        player.draw(screen)
-        car1.move(player, game)
-        car1.draw(screen)
-        car2.move(player, game)
-        car2.draw(screen)
-        car3.move(player, game)
-        car3.draw(screen)
-        car4.move(player, game)
-        car4.draw(screen)
-        game.draw_score()
-        game.collision()
+        self.bg.draw(screen)
+        self.flag.move(self)
+        self.flag.draw(screen)
+        self.player.move(self, self.bg, self.flag)
+        self.player.draw(screen)
+        self.car1.move(self.player, self)
+        self.car1.draw(screen)
+        self.car2.move(self.player, self)
+        self.car2.draw(screen)
+        self.car3.move(self.player, self)
+        self.car3.draw(screen)
+        self.car4.move(self.player, self)
+        self.car4.draw(screen)
+        self.draw_score()
+        self.collision()
         pygame.display.update()
 
     def change_screen(self): 
         if self.current_screen == "play":
-            game.mainloop()
+            self.mainloop()
         elif self.current_screen == "menu":
             self.menu()
 
-game = Game()
