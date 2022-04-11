@@ -6,7 +6,7 @@ class Player:
         self.image_straight = pygame.image.load('sprites/player_car.png').convert_alpha()
         self.image_left = pygame.image.load('sprites/player_car_left.png').convert_alpha()
         self.image_right = pygame.image.load('sprites/player_car_right.png').convert_alpha()
-        self.sound_revup = pygame.mixer.Sound('sounds/mp3 and wav/car_revving.mp3')
+        self.sound_revup = pygame.mixer.Sound('sounds/ogg/car_revving.ogg')
         self.sound_revup.set_volume(0.5)
         self.sound_horn = pygame.mixer.Sound('sounds/ogg/car_horn.ogg')
         self.sound_horn.set_volume(0.3)
