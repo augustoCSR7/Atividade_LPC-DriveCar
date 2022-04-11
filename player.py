@@ -6,10 +6,10 @@ class Player:
         self.image_straight = pygame.image.load('sprites/player_car.png').convert_alpha()
         self.image_left = pygame.image.load('sprites/player_car_left.png').convert_alpha()
         self.image_right = pygame.image.load('sprites/player_car_right.png').convert_alpha()
-        '''self.sound_revup = pygame.mixer.Sound('sounds/engine_revup.ogg')
+        self.sound_revup = pygame.mixer.Sound('sounds/mp3 and wav/car_revving.mp3')
         self.sound_revup.set_volume(0.5)
-        self.sound_horn = pygame.mixer.Sound('sounds/horn.ogg')
-        self.sound_horn.set_volume(0.3)'''
+        self.sound_horn = pygame.mixer.Sound('sounds/ogg/car_horn.ogg')
+        self.sound_horn.set_volume(0.3)
         self.image = self.image_straight
         self.trace = (0, 0, 0, 0)
         self.posx, self.posy, self.speed, self.carspeed = 315, 550, 0, -5
@@ -31,7 +31,7 @@ class Player:
                     self.brake = True
             if event.type == pygame.KEYUP:
                 self.moving_left, self.moving_right, self.gas, self.brake = False, False, False, False
-                '''self.sound_revup.stop()'''
+                self.sound_revup.stop()
         self.image = self.image_straight
         if self.moving_left and not self.posx - 2.5 <= 205:
             self.posx -= 2.5
@@ -45,13 +45,13 @@ class Player:
             flag.speed += .005/3
             self.carspeed += .03/3
             if not pygame.mixer.get_busy():
-                '''self.sound_revup.play(loops=0, maxtime=0, fade_ms=1)'''
+                self.sound_revup.play(loops=0, maxtime=0, fade_ms=1)
         if self.brake and self.speed > 0:
             self.speed -= 1*2
             bg.speed -= .05/2
             flag.speed -= .005*2
             self.carspeed -= .03*2
-            '''self.sound_revup.stop()'''
+            self.sound_revup.stop()
         if self.speed <= 0 or bg.speed <= 0:
             self.speed = 0
             bg.speed = 0
