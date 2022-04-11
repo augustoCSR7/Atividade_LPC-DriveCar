@@ -1,4 +1,5 @@
 '''import pygame.music'''
+from turtle import width
 import pygame
 pygame.init()
 from config import Config
@@ -44,12 +45,12 @@ class Game:
                 if event.key == pygame.K_SPACE:
                     self.current_screen = "play"
         # Background image
-        back_img = pygame.image.load("sprites/Ferrari.jpg")
-        new_back = pygame.transform.scale(back_img, (Config.width, Config.height))
+        back_img = pygame.image.load("sprites/Ford.jpg")
+        new_back = pygame.transform.scale(back_img, (700, 800))
         screen.blit(new_back, (0, 0))
         # Font and text
         text = pygame.font.Font('./font/Gamer.ttf', 160)
-        write_text = text.render("DRIVE CAR", True, Config.White)
+        write_text = text.render("DRIVE CAR", True, Config.Black)
         write_text_rect = write_text.get_rect(center=(Config.width / 2, 150))
         screen.blit(write_text, write_text_rect)
         text2 = pygame.font.Font('./font/Gamer.ttf', 70)
@@ -76,12 +77,16 @@ class Game:
         for car in cars:
             if p.colliderect(car):
                 screen.blit(self.image, (int(player.posx - 80), int(player.posy + 10)))
-                pygame.display.update()
                 pygame.mixer.music.stop()
-                player.sound_revup.stop()
+                #player.sound_revup.stop()
                 self.sound_crash.play(loops=0, maxtime=0, fade_ms=1)
+                text = pygame.font.Font('./font/Gamer.ttf', 120)
+                game_over = text.render("GAME OVER", True, Config.White)
+                screen.blit(game_over,(150,300))
+                pygame.display.update()
                 pygame.time.delay(5000)
                 Config.GAME = False
+
 
     def mainloop(self):
 
@@ -107,6 +112,5 @@ class Game:
             game.mainloop()
         elif self.current_screen == "menu":
             self.menu()
-
 
 game = Game()
