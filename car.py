@@ -27,7 +27,7 @@ class Car:
             self.posy += player.carspeed + self.speed
             if self.posy >= Config.height or self.posy <= -999:
                 self.is_moving = False
-                self.posy = -150
+                self.posy = -200
 
     def draw(self, screen):
         self.trace = screen.blit(self.image, (int(self.posx), int(self.posy)))

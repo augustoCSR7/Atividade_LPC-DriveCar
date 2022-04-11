@@ -1,14 +1,14 @@
 class Config:
-    #Frames per second
+    # Frames per second
     FPS = 120
 
-    #Name of the game
+    # Name of the game
 
     GAME = True
-    #Screen size
+    # Screen size
     width, height = 700, 800
 
-    #Colours
+    # Colours
     Black = (0, 0, 0)
     White = (255, 255, 255)
     Grey = (212, 210, 212)

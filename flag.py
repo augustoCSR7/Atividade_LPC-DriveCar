@@ -2,6 +2,7 @@ import pygame
 import random
 from config import Config
 
+
 class Flag:
     def __init__(self):
         self.image = pygame.image.load('sprites/flag.png').convert_alpha()

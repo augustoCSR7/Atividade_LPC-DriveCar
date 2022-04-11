@@ -1,24 +1,25 @@
 import pygame
 
+
 class Player:
     def __init__(self):
         self.image_straight = pygame.image.load('sprites/player_car.png').convert_alpha()
-        self.image_left = pygame.image.load('sprites/player_car_left.jpeg').convert_alpha()
-        self.image_right = pygame.image.load('sprites/player_car_right.jpeg').convert_alpha()
+        self.image_left = pygame.image.load('sprites/player_car_left.png').convert_alpha()
+        self.image_right = pygame.image.load('sprites/player_car_right.png').convert_alpha()
         '''self.sound_revup = pygame.mixer.Sound('sounds/engine_revup.ogg')
         self.sound_revup.set_volume(0.5)
         self.sound_horn = pygame.mixer.Sound('sounds/horn.ogg')
         self.sound_horn.set_volume(0.3)'''
         self.image = self.image_straight
         self.trace = (0, 0, 0, 0)
-        self.posx, self.posy, self.speed, self.carspeed = 315, 650, 0, -5
+        self.posx, self.posy, self.speed, self.carspeed = 315, 550, 0, -5
         self.moving_left, self.moving_right, self.gas, self.brake = False, False, False, False
 
     def move(self, game, bg, flag):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 game.gameover = True
-                return
+                exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
                     self.moving_left = True
