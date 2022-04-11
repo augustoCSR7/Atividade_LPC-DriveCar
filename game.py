@@ -26,14 +26,14 @@ class Game:
         self.score, self.gameover, self.difficulty = 0, False, 500
         self.FONT = pygame.font.Font('font/Gamer.ttf', 20)
         self.current_screen = "menu"
-        '''pygame.mixer.music.load('sounds/engine_steady,ogg')
-        pygame.mixer.music.set_volume(0.5)
-        pygame.mixer.music.play(loops=-1)'''
+        pygame.mixer.music.load('sounds/mp3 and wav/musica_fundo.mp3')
+        pygame.mixer.music.set_volume(0.2)
+        pygame.mixer.music.play(loops=-1)
         self.image = pygame.image.load('sprites/crash.png').convert_alpha()
-        '''self.sound_crash = pygame.mixer.Sound('sounds/crash.ogg')
-        self.sound_crash.set_volume(0.5)
-        self.sound_point = pygame.mixer.Sound('sounds/point.ogg')
-        self.sound_point.set_volume(0.5)'''
+        self.sound_crash = pygame.mixer.Sound('sounds/mp3 and wav/collision.wav')
+        self.sound_crash.set_volume(0.3)
+        self.sound_point = pygame.mixer.Sound('sounds/mp3 and wav/points.wav')
+        self.sound_point.set_volume(0.3)
 
     def menu(self):
         for event in pygame.event.get():
@@ -72,14 +72,14 @@ class Game:
         if p.colliderect(f):
             flag.posx = -100
             game.score += 1
-            '''self.sound_point.play(loops=0, maxtime=0, fade_ms=0)'''
+            self.sound_point.play(loops=0, maxtime=0, fade_ms=0)
         for car in cars:
             if p.colliderect(car):
                 screen.blit(self.image, (int(player.posx - 80), int(player.posy + 10)))
                 pygame.display.update()
                 pygame.mixer.music.stop()
-                '''player.sound_revup.stop()
-                self.sound_crash.play(loops=0, maxtime=0, fade_ms=1)'''
+                player.sound_revup.stop()
+                self.sound_crash.play(loops=0, maxtime=0, fade_ms=1)
                 pygame.time.delay(5000)
                 Config.GAME = False
 

@@ -22,7 +22,7 @@ class Car:
                 self.image = self.image_list[random.randint(0, 2)]
                 self.speed = random.randint(0, 3)
                 if self.speed == 3 and player.speed > 200:
-                    '''player.sound_horn.play(loops=0, maxtime=0, fade_ms=0)'''
+                    player.sound_horn.play(loops=0, maxtime=0, fade_ms=0)
         else:
             self.posy += player.carspeed + self.speed
             if self.posy >= Config.height or self.posy <= -999:
