@@ -1,4 +1,5 @@
 import pygame
+from config import Config
 
 
 class Player:
@@ -18,7 +19,7 @@ class Player:
     def move(self, game, bg, flag):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                game.gameover = True
+                Config.game = False
                 exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:

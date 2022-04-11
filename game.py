@@ -13,8 +13,7 @@ pygame.display.set_caption("Drive car")
 
 class Game:
     def __init__(self):
-        self.score, self.gameover, self.difficulty = 0, False, 500
-        self.FONT = pygame.font.Font('font/Gamer.ttf', 20)
+        self.score, self.difficulty = 0, 500
         self.current_screen = "menu"
         pygame.mixer.music.load('sounds/mp3 and wav/musica_fundo.mp3')
         pygame.mixer.music.set_volume(0.2)
@@ -57,8 +56,8 @@ class Game:
         pygame.display.update()
     
     def draw_score(self):
-        txt_speed = self.FONT.render('Speed:' + str(int(self.player.speed)) + ' mph', True, (255, 255, 255))
-        txt_score = self.FONT.render('Score:' + str(self.score), True, (255, 255, 255))
+        txt_speed = Config.FONT.render('Speed:' + str(int(self.player.speed)) + ' mph', True, (255, 255, 255))
+        txt_score = Config.FONT.render('Score:' + str(self.score), True, (255, 255, 255))
         screen.blit(txt_speed, (10, 610))
         screen.blit(txt_score, (10, 640))
 

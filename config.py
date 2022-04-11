@@ -1,8 +1,8 @@
+import pygame
+
 class Config:
     # Frames per second
     FPS = 120
-
-    # Name of the game
 
     GAME = True
     # Screen size
@@ -17,5 +17,7 @@ class Config:
     Blue = (0, 97, 148)
     Red = (162, 8, 0)
     Yellow = (197, 199, 37)
+
+    FONT = pygame.font.Font('font/Gamer.ttf', 20)
 
    
