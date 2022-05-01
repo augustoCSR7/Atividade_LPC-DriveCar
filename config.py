@@ -3,7 +3,7 @@ import pygame
 class Config:
     # Frames per second
     FPS = 120
-
+    #adjhasdhadkadajhd teste
     GAME = True
     # Screen size
     width, height = 700, 800
